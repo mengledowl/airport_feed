@@ -1,0 +1,2 @@
+defmodule AirportFeed do
+end

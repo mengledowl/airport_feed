@@ -21,14 +21,17 @@ defmodule AirportFeed.WeatherService do
   defp handle_response({:ok, %{status_code: 200, body: body}}) do
     Logger.info "Successful response"
     
-    body
+    response = body
     |> :binary.bin_to_list
     |> :xmerl_scan.string
     |> build_map(@weather_attributes)
+    
+    { :ok, response }
   end
   
   defp handle_response({_, %{status_code: status, body: body}}) do
     Logger.error "Error #{status} returned"
+    { :error, status }
   end
   
   defp build_map(document, attrs), do: _build_map(%{}, attrs, document)

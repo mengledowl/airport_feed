@@ -23,5 +23,17 @@ defmodule AirportFeed.CLI do
     IO.puts """
       usage: airportfeed <location>
     """
+    System.halt(0)
+  end
+  
+  def process(location) do
+    AirportFeed.WeatherService.fetch(location)
+    |> decode_response
+  end
+  
+  def decode_response({:ok, response}), do: response
+  def decode_response({:error, status}) do
+    IO.puts "Error encountered fetching weather data: #{status}"
+    System.halt(2)
   end
 end

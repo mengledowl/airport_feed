@@ -29,6 +29,7 @@ defmodule AirportFeed.CLI do
   def process(location) do
     AirportFeed.WeatherService.fetch(location)
     |> decode_response
+    |> AirportFeed.WeatherFormatter.pretty_print
   end
   
   def decode_response({:ok, response}), do: response

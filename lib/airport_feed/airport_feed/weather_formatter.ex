@@ -21,13 +21,13 @@ defmodule AirportFeed.WeatherFormatter do
     end
   end
  
-  def prettify_keys([]), do: []
+  def prettify_keys([]),            do: []
   def prettify_keys([head | tail]), do: [prettify_string(head) | prettify_keys(tail)]
   
   def prettify_string("observation_time_rfc822"), do: "Last Updated"
-  def prettify_string("station_id"), do: "Station"
-  def prettify_string("temperature_string"), do: "Temperature"
-  def prettify_string("wind_string"), do: "Wind"
+  def prettify_string("station_id"),              do: "Station"
+  def prettify_string("temperature_string"),      do: "Temperature"
+  def prettify_string("wind_string"),             do: "Wind"
   def prettify_string(s) do
     s
     |> String.replace("_", " ")

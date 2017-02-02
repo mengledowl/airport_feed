@@ -4,8 +4,8 @@ defmodule AirportFeed.WeatherService do
   
   @service_url Application.get_env(:airport_feed, :service_url)
   @weather_attributes ~w(
-    location station_id latitude longitude observation_time_rfc822 weather temperature_string temp_f relative_humidity 
-    wind_string wind_dir wind_degrees
+    location station_id latitude longitude observation_time_rfc822 weather temperature_string relative_humidity 
+    wind_string wind_degrees
   )
   
   def fetch(location) do
@@ -29,7 +29,7 @@ defmodule AirportFeed.WeatherService do
     { :ok, response }
   end
   
-  defp handle_response({_, %{status_code: status, body: body}}) do
+  defp handle_response({_, %{status_code: status, body: _}}) do
     Logger.error "Error #{status} returned"
     { :error, status }
   end

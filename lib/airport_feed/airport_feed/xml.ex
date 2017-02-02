@@ -6,7 +6,7 @@ defmodule XML do
   defrecord :xmlText, extract(:xmlText, from_lib: "xmerl/include/xmerl.hrl")
   
   def get_text({document, _}, xpath) do
-    Logger.info "xpath: #{xpath}"
+    Logger.debug "xpath: #{xpath}"
     
     [path_string] = :xmerl_xpath.string(xpath, document)
     [content] = xmlElement(path_string, :content)

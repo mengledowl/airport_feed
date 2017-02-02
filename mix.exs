@@ -3,6 +3,7 @@ defmodule AirportFeed.Mixfile do
 
   def project do
     [app: :airport_feed,
+     escript: escript_config,
      version: "0.1.0",
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
@@ -30,5 +31,9 @@ defmodule AirportFeed.Mixfile do
     [
       {:httpoison, "~> 0.10.0"}
     ]
+  end
+  
+  def escript_config do
+    [ main_module: AirportFeed.CLI ]
   end
 end
